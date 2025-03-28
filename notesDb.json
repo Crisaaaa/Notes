@@ -1,0 +1,29 @@
+{
+  "notes": [
+    {
+      "title": "My Note",
+      "content": "Today i went shopping.",
+      "id": 1
+    },
+    {
+      "title": "Questions",
+      "content": "What do i do?",
+      "id": 2
+    },
+    {
+      "title": "Groceries",
+      "content": "Eggs,Milk,Bread",
+      "id": 3
+    },
+    {
+      "title": "Groceries",
+      "content": "Eggs,Milk,Bread",
+      "id": 4
+    },
+    {
+      "title": "Groceries",
+      "content": "Eggs,Milk,Bread",
+      "id": 5
+    }
+  ]
+}
