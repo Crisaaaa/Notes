@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div><NotesList :notes ="notes"></NotesList></div>
-    <v-btn  color="primary"
+    <div><NotesList class="d-flex flex-column align-center mt-8 pb-10" :notes ="notes"></NotesList></div>
+    <v-btn  color="#ebe89e"
     style="position: fixed; bottom: 40px; right: 40px; z-index: 1000;">Add</v-btn>
   </div>
   </template>
