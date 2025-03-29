@@ -1,25 +1,136 @@
 <template>
-    <div>
-        <NotesCard 
+  <div>
+    <NotesCard
         v-for="note in notes"
         :note="note"
-        :key="note.id">
-        </NotesCard>
-    </div>
+        :key="note.id"
+        @click="onNoteClick(note)">
+    </NotesCard>
+
+
+    <v-dialog
+        v-model="dialog"
+        max-width="600"
+    >
+      <v-card>
+
+        <template #title>
+          <div class="d-flex align-center justify-space-between">
+            <span>Note</span>
+            <v-btn
+                text="Delete"
+                color="red-accent-4"
+                @click="onDelete">
+            </v-btn>
+          </div>
+        </template>
+
+        <v-card-text>
+          <v-col dense>
+            <v-col
+                cols="12"
+                md="4"
+                sm="6"
+            >
+              <v-text-field
+                  label="Title"
+                  required
+                  :style="{ minWidth: '250px', width: 'auto'}"
+                  :disabled="!isEditing"
+                  v-model="noteOnScreen.title"
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+                sm="6"
+            >
+              <v-text-field
+                  required
+                  :style="{minHeight: '150px', minWidth: '500px'}"
+                  :disabled="!isEditing"
+                  v-model="noteOnScreen.content"
+              ></v-text-field>
+            </v-col>
+
+          </v-col>
+
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+              text="Edit"
+              color="primary"
+              @click="isEditing = true"
+          ></v-btn>
+
+          <v-btn
+              v-if="isEditing"
+              text="Save"
+              color="green"
+              @click="onSave"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+
 </template>
 
 <script>
 
 import NotesCard from './NotesCard.vue';
+import axios from "axios";
 
-export default{
-    name:"NotesList",
-    components:{
-        NotesCard
-    },
-    props:{
-        notes: Array
+
+export default {
+  name: "NotesList",
+  components: {
+    NotesCard
+  },
+  data() {
+    return {
+      dialog: false,
+      isEditing: false,
+      noteOnScreen: null,
     }
+  },
+  watch: {
+    dialog(val) {
+      if (!val) {
+        this.isEditing = false
+      }
+    }
+  },
+  props: {
+    notes: Array
+  },
+  methods: {
+    onNoteClick(note) {
+      this.dialog = true
+      this.noteOnScreen = {...note}
+    },
+    async onSave() {
+      this.isEditing = false;
+      await axios.put(` http://localhost:3001/notes/${this.noteOnScreen.id}`, {
+        title: this.noteOnScreen.title,
+        content: this.noteOnScreen.content
+      })
+      this.dialog = false;
+      this.$emit('noteChanged')
+    },
+    async onDelete() {
+      await axios.delete(` http://localhost:3001/notes/${this.noteOnScreen.id}`)
+      this.dialog = false;
+      this.$emit('noteChanged')
+    }
+  }
+
 }
 
 </script>

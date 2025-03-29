@@ -1,19 +1,9 @@
 {
   "notes": [
     {
-      "title": "My Note",
-      "content": "Today i went shopping.",
+      "title": "Cici happy yey",
+      "content": "sdfsfsdfsdfadad",
       "id": 1
-    },
-    {
-      "title": "Question",
-      "content": "What do i do?",
-      "id": 2
-    },
-    {
-      "title": "Groceries",
-      "content": "Eggs,Milk,Bread",
-      "id": 3
     },
     {
       "title": "Groceries",
@@ -21,9 +11,19 @@
       "id": 4
     },
     {
-      "title": "Groceries",
-      "content": "Eggs,Milk,Bread",
+      "title": "Hello",
+      "content": "sfkhsfkjsbfj",
       "id": 5
+    },
+    {
+      "title": "I like yellow",
+      "content": "Eggs,Milk,Bread",
+      "id": 6
+    },
+    {
+      "title": "John Mayer",
+      "content": "Gravityyyyyyyyyyyyy",
+      "id": 7
     }
   ]
 }

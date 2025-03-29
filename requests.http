@@ -7,3 +7,10 @@ Content-Type: application/json
 }
 
 ###
+PUT  http://localhost:3001/notes/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "The little prince",
+    "content": "sdfsfsdfsdf"
+}
