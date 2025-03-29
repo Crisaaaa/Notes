@@ -1,98 +1,51 @@
 <template>
-  <div class="pa-4 text-center">
-    <v-dialog
-        v-model="dialog"
-        max-width="600"
-    >
-      <template v-slot:activator="{ props: activatorProps }">
-        <v-btn
-            class="text-none font-weight-regular"
-            prepend-icon="mdi-account"
-            text="Note1"
-            variant="tonal"
-            v-bind="activatorProps"
-        ></v-btn>
-      </template>
+  <v-sheet
+      class="d-flex align-center justify-center mx-auto"
+      height="100vh"
+      width="300"
+  >
+    <v-form fast-fail @submit.prevent="onSubmit">
+      <v-text-field
+          v-model="title"
+          label="Title"
+          :style="{ minWidth: '250px', width: 'auto' }"
+      ></v-text-field>
 
-      <v-card
-          prepend-icon="mdi-account"
-          title="Note"
-      >
-        <v-card-text>
-          <v-col dense>
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  label="Title"
-                  required
-                  :style="{ minWidth: '250px', width: 'auto'}"
-                  :disabled="!isEditing"
-              ></v-text-field>
-            </v-col>
+      <v-text-field
+          v-model="content"
+          label="Content"
+          :style="{minHeight: '150px', minWidth: '500px'}"
 
-            <v-col
-                cols="12"
-                md="4"
-                sm="6"
-            >
-              <v-text-field
-                  label="Content"
-                  required
-                  :style="{minHeight: '150px', minWidth: '500px'}"
-                  :disabled="!isEditing"
-              ></v-text-field>
-            </v-col>
+      ></v-text-field>
 
-          </v-col>
-
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn
-              text="Edit"
-              color="primary"
-              @click="isEditing = true"
-          ></v-btn>
-
-          <v-btn
-              v-if="isEditing"
-              text="Save"
-              color="red-accent-4"
-              @click="onSave"
-          ></v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+      <v-btn color="#ebe89e" class="mt-2" type="submit" block>Submit</v-btn>
+    </v-form>
+  </v-sheet>
 </template>
-
 <script>
+import axios from "axios";
+
 export default {
+  name: 'NoteNew',
   data() {
     return {
-      dialog: false,
-      isEditing: false
+      title: "",
+      content: ""
     }
   },
   methods: {
-    onSave() {
-      this.isEditing = false;
-      // this.dialog = false
+    async onSubmit() {
+      await axios.post(` http://localhost:3001/notes`, {
+        title: this.title,
+        content: this.content
+      })
+      this.$router.push('/')
     }
   }
 }
+
 </script>
 
 <style>
-
-
-
 
 </style>
