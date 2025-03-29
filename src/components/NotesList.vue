@@ -72,6 +72,7 @@
               text="Edit"
               color="primary"
               @click="isEditing = true"
+              v-if="!isEditing"
           ></v-btn>
 
           <v-btn
