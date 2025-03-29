@@ -18,7 +18,7 @@
 
       ></v-text-field>
 
-      <v-btn color="#ebe89e" class="mt-2" type="submit" block>Submit</v-btn>
+      <v-btn color="#ebe89e" class="mt-2" type="submit" block>Create</v-btn>
     </v-form>
   </v-sheet>
 </template>

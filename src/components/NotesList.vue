@@ -32,13 +32,15 @@
                 md="4"
                 sm="6"
             >
-              <v-text-field
-                  label="Title"
-                  required
-                  :style="{ minWidth: '250px', width: 'auto'}"
-                  :disabled="!isEditing"
-                  v-model="noteOnScreen.title"
-              ></v-text-field>
+              <div @click="onFieldClick">
+                <v-text-field
+                    label="Title"
+                    required
+                    :style="{ minWidth: '250px', width: 'auto'}"
+                    :disabled="!isEditing"
+                    v-model="noteOnScreen.title"
+                ></v-text-field>
+              </div>
             </v-col>
 
             <v-col
@@ -46,12 +48,15 @@
                 md="4"
                 sm="6"
             >
-              <v-text-field
-                  required
-                  :style="{minHeight: '150px', minWidth: '500px'}"
-                  :disabled="!isEditing"
-                  v-model="noteOnScreen.content"
-              ></v-text-field>
+              <div @click="onFieldClick">
+                <v-text-field
+                    required
+                    :style="{minHeight: '150px', minWidth: '500px'}"
+                    :disabled="!isEditing"
+                    v-model="noteOnScreen.content"
+                    @click="onFieldClick"
+                ></v-text-field>
+              </div>
             </v-col>
 
           </v-col>
@@ -111,6 +116,12 @@ export default {
     notes: Array
   },
   methods: {
+    onFieldClick() {
+      console.log("hdfvsjfhgvsdfhvsdjfhvsd")
+      if (!this.isEditing) {
+        this.isEditing = true;
+      }
+    },
     onNoteClick(note) {
       this.dialog = true
       this.noteOnScreen = {...note}
