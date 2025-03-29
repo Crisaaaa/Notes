@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "backend/server.js",
   "scripts": {
-    "start": "npx json-server /backend/notesDb.json -s ./frontend/dist",
+    "start": "npx json-server ./backend/notesDb.json -s ./frontend/dist",
     "build": "cd frontend && npm install && npm run build"
   },
   "dependencies": {
