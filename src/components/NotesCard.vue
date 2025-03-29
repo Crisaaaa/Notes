@@ -6,8 +6,6 @@
      width="300"
      hover
      > </v-card>
-  <v-textarea :disabled="!isEditing"></v-textarea>
-   <v-btn @click="toggleEditing()"> Edit</v-btn>
 </template>
 
 <script>
@@ -22,9 +20,7 @@ export default{
       }
   },
   methods:{
-      toggleEditing(){
-        this.isEditing = !this.isEditing
-      }
+
   }
 }
 </script>
