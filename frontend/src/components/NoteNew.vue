@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      await axios.post(` http://localhost:3001/notes`, {
+      await axios.post(` /notes`, {
         title: this.title,
         content: this.content
       })

@@ -129,7 +129,7 @@ export default {
     },
     async onSave() {
       this.isEditing = false;
-      await axios.put(` http://localhost:3001/notes/${this.noteOnScreen.id}`, {
+      await axios.put(` /notes/${this.noteOnScreen.id}`, {
         title: this.noteOnScreen.title,
         content: this.noteOnScreen.content
       })
@@ -137,7 +137,7 @@ export default {
       this.$emit('noteChanged')
     },
     async onDelete() {
-      await axios.delete(` http://localhost:3001/notes/${this.noteOnScreen.id}`)
+      await axios.delete(`/notes/${this.noteOnScreen.id}`)
       this.dialog = false;
       this.$emit('noteChanged')
     }

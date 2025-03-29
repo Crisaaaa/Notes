@@ -24,7 +24,7 @@
   },
   methods:{
     async fetchNotes(){
-        const response = await axios.get(' http://localhost:3001/notes');
+        const response = await axios.get('/notes');
         this.notes=response.data
     },
     onAdd(){
