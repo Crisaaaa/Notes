@@ -1,9 +1,10 @@
 <template>
   <v-sheet
-      class="d-flex align-center justify-center mx-auto"
+      class="d-flex flex-column  align-center justify-center mx-auto"
       height="100vh"
       width="300"
   >
+    <div class="text-h5 " style="margin-bottom:20px ">CREATE A NOTE</div>
     <v-form fast-fail @submit.prevent="onSubmit">
       <v-text-field
           v-model="title"
