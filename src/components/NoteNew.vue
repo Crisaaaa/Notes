@@ -41,14 +41,25 @@ export default {
     async onSubmit() {
       const res = await axios.get(`http://localhost:3001/notes`)
       const notes = res.data
-      const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
-      const nextId = maxId + 1
+
+      // Step 1: Extract all numeric IDs
+      const numericIds = notes
+          .map(n => parseInt(n.id, 10))
+          .filter(id => !isNaN(id))
+
+      // Step 2: Find the max ID and add 1
+      const maxId = numericIds.length > 0 ? Math.max(...numericIds) : 0
+      const newId = maxId + 1
+
+      // Step 3: Use newId in title if needed
       if (this.note.title === "") {
-        this.note.title = `Note_${nextId}`
+        this.note.title = `Note_${newId}`
       }
+
       await axios.post(` http://localhost:3001/notes`, {
         title: this.note.title,
-        content: this.note.content
+        content: this.note.content,
+        id: newId
       })
       this.$router.push('/')
     }
