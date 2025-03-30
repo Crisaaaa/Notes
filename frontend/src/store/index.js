@@ -7,7 +7,7 @@ export default createStore({
     actions: {
         async deleteNote({comit}, id) {
             console.log(comit)
-            await axios.delete(` http://localhost:3001/notes/${id}`)
+            await axios.delete(`/notes/${id}`)
         },
     },
     methods: {},

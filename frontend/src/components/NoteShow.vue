@@ -96,7 +96,7 @@ export default {
       this.$emit('update:dialog', value)
     },
     async onSave() {
-      await axios.put(` http://localhost:3001/notes/${this.localNote.id}`, {
+      await axios.put(`/notes/${this.localNote.id}`, {
         title: this.localNote.title,
         content: this.localNote.content
       })

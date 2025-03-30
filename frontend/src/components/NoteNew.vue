@@ -39,14 +39,14 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const res = await axios.get(`http://localhost:3001/notes`)
+      const res = await axios.get(`/notes`)
       const notes = res.data
       const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
       const nextId = maxId + 1
       if (this.note.title === "") {
         this.note.title = `Note_${nextId}`
       }
-      await axios.post(` http://localhost:3001/notes`, {
+      await axios.post(`/notes`, {
         title: this.note.title,
         content: this.note.content
       })
