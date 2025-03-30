@@ -44,8 +44,8 @@ export default {
 
       // Step 1: Extract all numeric IDs
       const numericIds = notes
-          .map(n => parseInt(n.id, 10))
-          .filter(id => !isNaN(id))
+          .map(n => parseInt(n.nb, 10))
+          .filter(nb => !isNaN(nb))
 
       // Step 2: Find the max ID and add 1
       const maxId = numericIds.length > 0 ? Math.max(...numericIds) : 0
@@ -59,7 +59,7 @@ export default {
       await axios.post(`/notes`, {
         title: this.note.title,
         content: this.note.content,
-        id: newId
+        nb: newId
       })
       this.$router.push('/')
     }
