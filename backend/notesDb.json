@@ -1,39 +1,19 @@
 {
   "notes": [
     {
-      "title": "Cici very happy ",
-      "content": "and she is smart",
-      "id": "1"
+      "title": "Note_7",
+      "content": "",
+      "id": 7
     },
     {
-      "title": "Hello",
-      "content": "Yey",
-      "id": "5"
+      "title": "Note_8",
+      "content": "",
+      "id": 8
     },
     {
-      "title": "Yasin",
-      "content": "is happy too",
-      "id": "8"
-    },
-    {
-      "title": "gina say helllo",
-      "content": "Hellooooooo",
-      "id": "9"
-    },
-    {
-      "title": "dfgdgd",
-      "content": "gdfgdg",
-      "id": "10"
-    },
-    {
-      "title": "adda",
-      "content": "sdadasd",
-      "id": "11"
-    },
-    {
-      "id": "22bc",
-      "title": "sdadsad",
-      "content": "sadsa"
+      "title": "Note_10",
+      "content": "",
+      "id": 10
     }
   ]
 }

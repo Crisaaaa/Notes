@@ -1,19 +1,15 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
+import axios from "axios";
 
 export default createStore({
-    state:{
-
+    state: {},
+    mutations: {},
+    actions: {
+        async deleteNote({comit}, id) {
+            console.log(comit)
+            await axios.delete(` http://localhost:3001/notes/${id}`)
+        },
     },
-    mutations:{
-
-    },
-    actions:{
-
-    },
-    methods:{
-
-    },
-    getters:{
-        
-    }
+    methods: {},
+    getters: {}
 })
