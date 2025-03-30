@@ -1,24 +1,16 @@
 {
   "notes": [
     {
-      "title": "asds",
-      "content": "adad",
-      "id": 1
-    },
-    {
-      "title": "Note_2",
+      "title": "Note_3",
       "content": "",
-      "id": 2
+      "nb": 3,
+      "id": 3
     },
     {
       "title": "Note_4",
       "content": "",
+      "nb": 4,
       "id": 4
-    },
-    {
-      "title": "Note_5",
-      "content": "",
-      "id": 5
     }
   ]
 }
