@@ -7,13 +7,13 @@
     <div class="text-h5 " style="margin-bottom:20px ">CREATE A NOTE</div>
     <v-form fast-fail @submit.prevent="onSubmit">
       <v-text-field
-          v-model="title"
+          v-model="note.title"
           label="Title"
           :style="{ minWidth: '250px', width: 'auto' }"
       ></v-text-field>
 
       <v-textarea
-          v-model="content"
+          v-model="note.content"
           label="Content"
           :style="{minHeight: '150px', minWidth: '500px'}"
 
@@ -26,19 +26,29 @@
 <script>
 import axios from "axios";
 
+
 export default {
   name: 'NoteNew',
   data() {
     return {
-      title: "",
-      content: ""
+      note: {
+        title: "",
+        content: ""
+      }
     }
   },
   methods: {
     async onSubmit() {
+      const res = await axios.get(`http://localhost:3001/notes`)
+      const notes = res.data
+      const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
+      const nextId = maxId + 1
+      if (this.note.title === "") {
+        this.note.title = `Note_${nextId}`
+      }
       await axios.post(` http://localhost:3001/notes`, {
-        title: this.title,
-        content: this.content
+        title: this.note.title,
+        content: this.note.content
       })
       this.$router.push('/')
     }

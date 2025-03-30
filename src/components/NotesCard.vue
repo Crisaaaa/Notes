@@ -1,10 +1,11 @@
 <template>
     <v-card
     :title="note.title"
-    :subtitle="note.content"
+    :subtitle="note.content || ''"
     class=" mb-4 px-10 crisa-note-card "
      width="300"
      hover
+     style="min-height: 75px"
      > </v-card>
 </template>
 

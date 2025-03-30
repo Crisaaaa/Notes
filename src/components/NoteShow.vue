@@ -58,11 +58,6 @@
         <v-spacer></v-spacer>
 
         <v-btn
-            text="Edit"
-            color="primary"
-        ></v-btn>
-
-        <v-btn
             text="Save"
             color="green"
             @click="onSave"
@@ -85,29 +80,34 @@ export default {
     note(val) {
       this.localNote = {...val}
     },
-  },
-    props: {
-      dialog: Boolean,
-      note: Object
-    },
-    methods: {
-      onDialogUpdate(value) {
-        this.$emit('update:dialog', value)
-      },
-      async onSave() {
-        await axios.put(` http://localhost:3001/notes/${this.localNote.id}`, {
-          title: this.localNote.title,
-          content: this.localNote.content
-        })
-        this.$emit('update:dialog', false)
-        this.$emit('noteChanged')
-      },
-      async onDelete() {
-        await axios.delete(` http://localhost:3001/notes/${this.localNote.id}`)
-        this.$emit('update:dialog', false)
+    dialog(val) {
+      if (val == false) {
         this.$emit('noteChanged')
       }
     }
+  },
+  props: {
+    dialog: Boolean,
+    note: Object
+  },
+  methods: {
+    onDialogUpdate(value) {
+      this.$emit('update:dialog', value)
+    },
+    async onSave() {
+      await axios.put(` http://localhost:3001/notes/${this.localNote.id}`, {
+        title: this.localNote.title,
+        content: this.localNote.content
+      })
+      this.$emit('update:dialog', false)
+      this.$emit('noteChanged')
+    },
+    async onDelete() {
+      await axios.delete(` http://localhost:3001/notes/${this.localNote.id}`)
+      this.$emit('update:dialog', false)
+      this.$emit('noteChanged')
+    }
   }
+}
 
 </script>
