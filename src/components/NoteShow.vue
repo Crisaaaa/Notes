@@ -24,12 +24,11 @@
               md="4"
               sm="6"
           >
-            <div @click="onFieldClick">
+            <div>
               <v-text-field
                   label="Title"
                   required
                   :style="{ minWidth: '250px', width: 'auto'}"
-                  :disabled="!isEditing"
                   v-model="localNote.title"
               ></v-text-field>
             </div>
@@ -40,14 +39,12 @@
               md="4"
               sm="6"
           >
-            <div @click="onFieldClick">
-              <v-text-field
+            <div>
+              <v-textarea
                   required
                   :style="{minHeight: '150px', minWidth: '500px'}"
-                  :disabled="!isEditing"
                   v-model="localNote.content"
-                  @click="onFieldClick"
-              ></v-text-field>
+              ></v-textarea>
             </div>
           </v-col>
 
@@ -63,12 +60,9 @@
         <v-btn
             text="Edit"
             color="primary"
-            @click="isEditing = true"
-            v-if="!isEditing"
         ></v-btn>
 
         <v-btn
-            v-if="isEditing"
             text="Save"
             color="green"
             @click="onSave"
@@ -85,7 +79,6 @@ export default {
   data() {
     return {
       localNote: null,
-      isEditing: false,
     }
   },
   watch: {
@@ -93,34 +86,28 @@ export default {
       this.localNote = {...val}
     },
   },
-  props: {
-    dialog: Boolean,
-    note: Object
-  },
-  methods: {
-    onFieldClick() {
-      if (!this.isEditing) {
-        this.isEditing = true;
+    props: {
+      dialog: Boolean,
+      note: Object
+    },
+    methods: {
+      onDialogUpdate(value) {
+        this.$emit('update:dialog', value)
+      },
+      async onSave() {
+        await axios.put(` http://localhost:3001/notes/${this.localNote.id}`, {
+          title: this.localNote.title,
+          content: this.localNote.content
+        })
+        this.$emit('update:dialog', false)
+        this.$emit('noteChanged')
+      },
+      async onDelete() {
+        await axios.delete(` http://localhost:3001/notes/${this.localNote.id}`)
+        this.$emit('update:dialog', false)
+        this.$emit('noteChanged')
       }
-    },
-    onDialogUpdate(value) {
-      this.$emit('update:dialog', value)
-    },
-    async onSave() {
-      this.isEditing = false;
-      await axios.put(` http://localhost:3001/notes/${this.localNote.id}`, {
-        title: this.localNote.title,
-        content: this.localNote.content
-      })
-      this.$emit('update:dialog', false)
-      this.$emit('noteChanged')
-    },
-    async onDelete() {
-      await axios.delete(` http://localhost:3001/notes/${this.localNote.id}`)
-      this.$emit('update:dialog', false)
-      this.$emit('noteChanged')
     }
   }
-}
 
 </script>

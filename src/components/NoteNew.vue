@@ -12,12 +12,12 @@
           :style="{ minWidth: '250px', width: 'auto' }"
       ></v-text-field>
 
-      <v-text-field
+      <v-textarea
           v-model="content"
           label="Content"
           :style="{minHeight: '150px', minWidth: '500px'}"
 
-      ></v-text-field>
+      ></v-textarea>
 
       <v-btn color="#ebe89e" class="mt-2" type="submit" block>Create</v-btn>
     </v-form>
