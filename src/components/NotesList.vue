@@ -4,7 +4,9 @@
         v-for="note in notes"
         :note="note"
         :key="note.id"
-        @click="onNoteClick(note)">
+        @noteClick="onNoteClick"
+        @noteChanged="onNoteChanged"
+    >
     </NotesCard>
     <NoteShow v-model:dialog="dialog" :note="noteOnScreen" @noteChanged="onNoteChanged"></NoteShow>
 

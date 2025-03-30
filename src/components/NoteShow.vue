@@ -30,6 +30,7 @@
                   required
                   :style="{ minWidth: '250px', width: 'auto'}"
                   v-model="localNote.title"
+                  @keydown.enter="onSave"
               ></v-text-field>
             </div>
           </v-col>
@@ -103,7 +104,7 @@ export default {
       this.$emit('noteChanged')
     },
     async onDelete() {
-      await axios.delete(` http://localhost:3001/notes/${this.localNote.id}`)
+      await this.$store.dispatch('deleteNote', this.localNote.id)
       this.$emit('update:dialog', false)
       this.$emit('noteChanged')
     }
