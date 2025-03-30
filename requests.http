@@ -3,7 +3,8 @@ Content-Type: application/json
 
  {
       "title": "Groceries",
-      "content": "Eggs,Milk,Bread"
+      "content": "Eggs,Milk,Bread",
+      "id": 100
 }
 
 ###
