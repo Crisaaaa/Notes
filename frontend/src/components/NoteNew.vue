@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const res = await axios.get(`http://localhost:3001/notes`)
+      const res = await axios.get(`/notes`)
       const notes = res.data
 
       // Step 1: Extract all numeric IDs
@@ -56,7 +56,7 @@ export default {
         this.note.title = `Note_${newId}`
       }
 
-      await axios.post(` http://localhost:3001/notes`, {
+      await axios.post(`/notes`, {
         title: this.note.title,
         content: this.note.content,
         id: newId
