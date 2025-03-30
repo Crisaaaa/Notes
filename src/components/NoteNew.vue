@@ -59,7 +59,7 @@ export default {
       await axios.post(` http://localhost:3001/notes`, {
         title: this.note.title,
         content: this.note.content,
-        id: newId
+        nb: newId
       })
       this.$router.push('/')
     }
