@@ -8,8 +8,6 @@
         @noteDelete="noteDelete"
     >
     </NotesCard>
-
-
   </div>
 
 </template>
@@ -28,10 +26,10 @@ export default {
   },
   methods: {
     onNoteClick(note) {
-      this.$emit('noteClicked',note)
+      this.$emit('noteClicked', note)
     },
-    noteDelete(){
-       this.$emit('noteChanged')
+    noteDelete() {
+      this.$emit('noteChanged')
     }
   }
 
