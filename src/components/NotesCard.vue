@@ -34,9 +34,10 @@ export default {
   methods: {
     async onDelete() {
       await this.$store.dispatch('deleteNote', this.note.id)
-      this.$emit('noteChanged')
+      this.$emit('noteDelete')
     },
     onNoteClick() {
+            console.log("noteCard")
       this.$emit('noteClick', this.note)
     }
   }

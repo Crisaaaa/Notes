@@ -5,10 +5,9 @@
         :note="note"
         :key="note.id"
         @noteClick="onNoteClick"
-        @noteChanged="onNoteChanged"
+        @noteDelete="noteDelete"
     >
     </NotesCard>
-    <NoteShow v-model:dialog="dialog" :note="noteOnScreen" @noteChanged="onNoteChanged"></NoteShow>
 
 
   </div>
@@ -18,29 +17,21 @@
 <script>
 
 import NotesCard from './NotesCard.vue';
-import NoteShow from "./NoteShow.vue";
 
 export default {
   name: "NotesList",
   components: {
-    NotesCard,NoteShow
-  },
-  data() {
-    return {
-      dialog: false,
-      noteOnScreen: null,
-    }
+    NotesCard
   },
   props: {
     notes: Array
   },
   methods: {
     onNoteClick(note) {
-      this.dialog = true
-      this.noteOnScreen = note
+      this.$emit('noteClicked',note)
     },
-    onNoteChanged(){
-      this.$emit('noteChanged')
+    noteDelete(){
+       this.$emit('noteChanged')
     }
   }
 

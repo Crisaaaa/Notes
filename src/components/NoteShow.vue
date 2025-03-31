@@ -70,6 +70,7 @@
 <script>
 import axios from "axios";
 
+
 export default {
   name: 'NoteShow',
   data() {
@@ -107,6 +108,7 @@ export default {
       await this.$store.dispatch('deleteNote', this.localNote.id)
       this.$emit('update:dialog', false)
       this.$emit('noteChanged')
+      console.log("noteShow delete")
     }
   }
 }
