@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <NotesList @noteChanged="fetchNotes" @noteClicked="onNoteClick" class="d-flex flex-column align-center mt-8 pb-10"
+  <v-text-field @keydown="onSearch" label="Search note.." class="mt-8 w-25 ml-9"></v-text-field>
+  <div class="d-flex flex-column align-center">
+    <NotesList @noteChanged="fetchNotes" @noteClicked="onNoteClick" class="mt-2 pb-10"
                :notes="notes"></NotesList>
     <v-btn @click="onAdd" color="#ebe89e"
            style="position: fixed; bottom: 40px; right: 40px; z-index: 1000;">Add
@@ -35,6 +36,20 @@ export default {
       const response = await axios.get(' http://localhost:3001/notes');
       this.notes = response.data
     },
+    async onSearch(event) {
+      // const response = await axios.get(` http://localhost:3001/notes?title_like=${event.target.value}`);
+      // this.notes = response.data
+      fetch('http://localhost:3001/notes')
+          .then(res => res.json())
+          .then(data => {
+            const searchTerm = event.target.value;
+            const filtered = data.filter(note =>
+                note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                note.content.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            this.notes = filtered
+          });
+    },
     onNoteClick(note) {
       console.log("hello")
       this.dialog = true
@@ -46,3 +61,4 @@ export default {
   }
 }
 </script>
+
