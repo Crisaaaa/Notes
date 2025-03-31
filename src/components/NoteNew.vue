@@ -1,27 +1,35 @@
 <template>
-  <v-sheet
-      class="d-flex flex-column  align-center justify-center mx-auto"
-      height="100vh"
-      width="300"
+  <v-container
+      fluid
+      class="d-flex align-center justify-center"
+      style="height: 100vh"
   >
-    <div class="text-h5 " style="margin-bottom:20px ">CREATE A NOTE</div>
-    <v-form fast-fail @submit.prevent="onSubmit">
-      <v-text-field
-          v-model="note.title"
-          label="Title"
-          :style="{ minWidth: '250px', width: 'auto' }"
-      ></v-text-field>
+    <v-sheet
+        class="pa-6"
+        max-width="600"
+        width="100%"
+    >
+      <div class="text-h5 text-center mb-4">CREATE A NOTE</div>
+      <v-form fast-fail @submit.prevent="onSubmit">
+        <v-text-field
+            v-model="note.title"
+            label="Title"
+            required
+            class="w-100"
+        />
+        <v-textarea
+            v-model="note.content"
+            label="Content"
+            auto-grow
+            rows="4"
+            required
+            class="w-100"
+        />
 
-      <v-textarea
-          v-model="note.content"
-          label="Content"
-          :style="{minHeight: '150px', minWidth: '500px'}"
-
-      ></v-textarea>
-
-      <v-btn color="#ebe89e" class="mt-2" type="submit" block>Create</v-btn>
-    </v-form>
-  </v-sheet>
+        <v-btn color="#ebe89e" class="mt-2" type="submit" block>Create</v-btn>
+      </v-form>
+    </v-sheet>
+  </v-container>
 </template>
 <script>
 import axios from "axios";
